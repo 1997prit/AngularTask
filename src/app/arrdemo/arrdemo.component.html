@@ -1,0 +1,17 @@
+<p>
+  Item To do task using Array
+</p>
+
+<input type="text"[(ngModel)]="Id">&nbsp;
+<input type="text"[(ngModel)]="Title">&nbsp;
+<input type="text"[(ngModel)]="Status">&nbsp;
+<button (click)="onAdd()">Add Item</button>
+
+<table>
+  <tr *ngFor="let item of arr">
+    <td>{{item.Id}}</td>
+    <td>{{item.Title}}</td>
+    <td>{{item.Status}}</td>
+    <td><button (click)="onDelete(item)">Delete</button></td>
+  </tr>
+</table>

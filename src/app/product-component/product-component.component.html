@@ -1,0 +1,94 @@
+<h2>Hello from child</h2>
+
+
+<div class="container">
+  <div class="row">
+  <div class="col-md-3">
+    <app-sidebar (demo)=(onDemo($event))></app-sidebar>
+  </div>
+
+  <div calss="col-md-9">
+    <div>
+      <h1 appHighlighter [highlightcolor]="'green'" [defaultcolor]="'blue'">
+        Hello World!
+      </h1>
+    </div>
+
+    <div>
+      <input type="text" #demo />
+      <button (click)="onClick()">Press</button>
+    </div>
+    <br />
+    <br />
+
+  <div>
+    <input type="text" #id class="form-control" placeholder="Enter the Emp Id" />
+    <input
+      type="text"
+      #name
+      class="form-control"
+      placeholder="Enter the Emp Name"
+    />
+    <input
+      type="text"
+      #salary
+      class="form-control"
+      placeholder="Enter the Emp Salary"
+    />
+    <input
+      type="text"
+      #designation
+      class="form-control"
+      placeholder="Enter the Emp Designation"
+    />
+    <button
+      class="btn btn-primary"
+      (click)="onAdd(id.value, name.value, salary.value, designation.value)"
+      type="button"
+    >
+      Add
+    </button>
+  </div>
+  <br />
+  <div>
+    <input
+      type="text"
+      #parameters
+      class="form-control"
+      placeholder="Search"
+      (keyup)="onSearch(parameters.value)"
+    />
+  </div>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Emp_Id</th>
+        <th scope="col">Emp_Name</th>
+        <th scope="col">Emp_Salary</th>
+        <th scope="col">Emp_Designation</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of (emparr | search: parameters.value)">
+        <th scope="row">{{ item.emp_id }}</th>
+        <td>{{ item.emp_name }}</td>
+        <td>{{ item.emp_salary }}</td>
+        <td
+          [ngClass]="{
+            permenent: item.emp_designation == 'Permanent',
+            temperory: item.emp_designation == 'Temparory'
+          }"
+        >
+          {{ item.emp_designation }}
+        </td>
+        <td><button btn btn-danger (click)="onDelete(item)">Remove</button></td>
+        <td><button btn btn-primary (click)="onUpdate(item)">Update</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  </div>
+  </div>
+</div>

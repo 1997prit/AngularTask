@@ -1,0 +1,9 @@
+<Div class="row">
+  <h1>{{ title }}</h1>
+  <br/>
+  <input #search type="text" (keyup)=(onKeyUp(search.value)) />
+  <br />
+  <button (click)="onSearch(search.value)" class="btn btn-primary">
+    Search
+  </button>
+</Div>
